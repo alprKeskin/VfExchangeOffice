@@ -2,3 +2,4 @@ rootProject.name = 'VfExchangeOffice'
 
 include 'ms_apigw'
 include 'ms_currency'
+include 'ms_search'
