@@ -1,1 +1,19 @@
+server:
+  port: 8082
+  servlet:
+    context-path: "/open_exchange_rates_api"
 
+alprkeskin:
+  consumed-urls:
+    api: "https://openexchangerates.org/api/"
+
+query-parameter:
+  app_id: "8749ae82dbde4276a7554e13d03ad71e"
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      database: openExchangeServiceDatabase
+      port: 27017
+      host: localhost

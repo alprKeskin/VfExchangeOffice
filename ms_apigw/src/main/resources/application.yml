@@ -1,1 +1,17 @@
+server:
+  port: 8080
 
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: currencyEndpoints
+          uri: http://localhost:8082
+          predicates:
+            - Path=/open_exchange_rates_api/currency/**
+        - id: searchEndpoints
+          uri: http://localhost:8081
+          predicates:
+            - Path=/currency_search_api/search/**
