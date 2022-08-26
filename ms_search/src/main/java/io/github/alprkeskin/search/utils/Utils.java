@@ -9,6 +9,6 @@ public class Utils {
         if (date.length != 0) {
             return date[0] + " " + "(" + currencyName + ")";
         }
-        return DateUtils.getCurrentDateAsString() + " " + "(" + currencyName + ")";
+        return DateUtils.getDateAsString() + " " + "(" + currencyName + ")";
     }
 }
