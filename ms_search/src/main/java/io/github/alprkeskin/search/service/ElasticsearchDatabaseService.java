@@ -2,6 +2,8 @@ package io.github.alprkeskin.search.service;
 
 import io.github.alprkeskin.search.model.Currency;
 import io.github.alprkeskin.search.repository.ElasticsearchRepositoryForCurrency;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -26,7 +28,10 @@ import java.util.List;
 
 
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class ElasticsearchDatabaseService {
+
     @Autowired
     private ElasticsearchRepositoryForCurrency repository;
 
@@ -35,8 +40,6 @@ public class ElasticsearchDatabaseService {
 
     @Autowired
     private ElasticsearchOperations elasticsearchOperations;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchDatabaseService.class);
 
     private Currency find(String id) {
         return repository.findById(id).orElse(null);

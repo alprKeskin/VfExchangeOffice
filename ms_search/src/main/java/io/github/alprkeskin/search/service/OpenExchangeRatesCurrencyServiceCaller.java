@@ -1,6 +1,7 @@
 package io.github.alprkeskin.search.service;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class OpenExchangeRatesCurrencyServiceCaller {
 
     private final Logger LOGGER = LoggerFactory.getLogger(OpenExchangeRatesCurrencyServiceCaller.class);
@@ -22,7 +25,7 @@ public class OpenExchangeRatesCurrencyServiceCaller {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("http://localhost:8082/open_exchange_rates_api/currency/currencies")
+    @Value("${openExchangeRatesCurrencyNamesUri}")
     private String CURRENCY_NAMES_URI;
 
     private Map<String, String> getCurrencyNames(URI targetUri) {
