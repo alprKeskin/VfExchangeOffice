@@ -10,14 +10,14 @@ class UtilsTest {
 
     @Test
     void givenUSDAndNullDate_whenGetIdWithDateAndCurrencyNameCalled_thenReturnCurrentDateAndUSD() {
-        String expected = LocalDate.now().toString() + " " + "(USD)";
+        String expected = LocalDate.now() + " " + "(USD)";
         String actual = Utils.getIdWithDateAndCurrencyName("USD");
         assertEquals(expected, actual);
     }
 
     @Test
     void givenTRYAndNullDate_whenGetIdWithDateAndCurrencyNameCalled_thenReturnCurrentDateAndUSD() {
-        String expected = LocalDate.now().toString() + " " + "(TRY)";
+        String expected = LocalDate.now() + " " + "(TRY)";
         String actual = Utils.getIdWithDateAndCurrencyName("TRY");
         assertEquals(expected, actual);
     }

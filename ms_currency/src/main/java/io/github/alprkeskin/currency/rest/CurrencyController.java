@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/currency")
-public class ServiceController {
+public class CurrencyController {
 
     @Autowired
     private CurrencyRatesMediatorService currencyRatesMediatorService;

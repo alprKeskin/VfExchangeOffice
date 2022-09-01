@@ -7,16 +7,19 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidCurrenciesTest {
 
-    List<String> validCurrencies;
+    Set<String> validCurrencies;
 
     @BeforeEach
     void initializeFields() {
-        validCurrencies = new ArrayList<String>(Arrays.asList("USD", "TRY", "AUD"));
+        validCurrencies = Stream.of("USD", "TRY", "AUD").collect(Collectors.toSet());
     }
 
     @Test

@@ -13,9 +13,7 @@ class CurrencyCounterService {
     @Autowired
     private SearchedCurrencyProducer currencyProducer;
 
-    Currency incrementSearchCount(String id) {
-        Currency currency = getCurrency(id);
-
+    Currency incrementSearchCount(Currency currency) {
         currency.incrementQueryNumber();
         currencyProducer.sendMessageToCurrency(currency.getQueryNumber(), currency);
 

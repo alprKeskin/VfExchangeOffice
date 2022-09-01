@@ -1,6 +1,7 @@
 package io.github.alprkeskin.search.service;
 
 import io.github.alprkeskin.search.model.Currency;
+import io.github.alprkeskin.search.utils.Utils;
 import io.github.alprkeskin.search.utils.ValidCurrencies;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -15,6 +16,8 @@ import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
+import static io.github.alprkeskin.search.model.Currency.getDefault;
 
 @Service
 class CurrencyFinderService {
@@ -36,7 +39,7 @@ class CurrencyFinderService {
     private Optional<Currency> incrementAndGetCurrency(Optional<Currency> currencyOpt, final String currencyName,
                                              final String id, final Fuzziness fuzzyLevel) {
         if (isValidCurrency(currencyOpt, currencyName, fuzzyLevel)) {
-            return Optional.of(counterService.incrementSearchCount(id));
+            return Optional.of(counterService.incrementSearchCount(currencyOpt.orElse(getDefault(id))));
         }
 
         return Optional.empty();

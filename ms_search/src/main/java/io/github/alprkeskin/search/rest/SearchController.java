@@ -13,7 +13,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/search")
-public class ServiceController {
+public class SearchController {
     @Autowired
     private CurrencyService currencyService;
 
