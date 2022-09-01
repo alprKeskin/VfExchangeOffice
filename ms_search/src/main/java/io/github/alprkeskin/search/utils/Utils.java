@@ -7,7 +7,7 @@ public class Utils {
      * **/
     public static String getIdWithDateAndCurrencyName(final String currencyName, final String... date) {
         if (date.length != 0) {
-            return date[0] + " " + "(" + currencyName + ")";
+            return date[0] + " (" + currencyName + ")";
         }
         return DateUtils.getDateAsString() + " " + "(" + currencyName + ")";
     }

@@ -2,6 +2,7 @@ package io.github.alprkeskin.search.service;
 
 import io.github.alprkeskin.search.model.Currency;
 import io.github.alprkeskin.search.repository.ElasticsearchRepositoryForCurrency;
+import io.github.alprkeskin.search.service.producer.SearchedCurrencyProducer;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.elasticsearch.action.update.UpdateRequest;
@@ -11,8 +12,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
@@ -34,6 +34,9 @@ public class ElasticsearchDatabaseService {
 
     @Autowired
     private ElasticsearchRepositoryForCurrency repository;
+
+    @Autowired
+    private SearchedCurrencyProducer currencyProducer;
 
     @Autowired
     private RestHighLevelClient client;
@@ -59,7 +62,18 @@ public class ElasticsearchDatabaseService {
     public Currency increaseQueryNumberAndReturn(Currency currency) throws IOException {
         this.increaseQueryNumber(currency.getId());
         currency.setQueryNumber(currency.getQueryNumber() + 1);
+        currencyProducer.sendMessageToCurrency(currency.getQueryNumber(), getDate(currency), getCode(currency));
         return currency;
+    }
+
+    private String getDate(Currency currency) {
+       return currency.getId().split(" ")[0];
+    }
+
+    private String getCode(Currency currency) {
+        return currency.getId().split(" ")[1]
+                .replace("(","")
+                .replace(")","");
     }
 
     public Currency save(String relatedId) {

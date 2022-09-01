@@ -6,4 +6,11 @@ server:
 elasticsearch:
   url: localhost:9200
 
+alprkeskin:
+  arbitrage:
+    threshold: 5
+  queues:
+    to:
+      currency: "search-to-currency"
+
 openExchangeRatesCurrencyNamesUri: "http://localhost:8082/open_exchange_rates_api/currency/currencies"

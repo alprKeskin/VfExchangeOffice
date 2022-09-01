@@ -18,6 +18,7 @@ public enum Endpoint {
             return this.operationType + date[0] + ".json";
         }
         if (date.length != 0) throw new RuntimeException("Date must not be given for latest and currencies endpoints!");
+
         return this.operationType;
     }
 }

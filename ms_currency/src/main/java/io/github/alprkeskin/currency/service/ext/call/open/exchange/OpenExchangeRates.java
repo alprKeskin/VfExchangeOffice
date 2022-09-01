@@ -1,4 +1,4 @@
-package io.github.alprkeskin.currency.service.exchangeRates.abstractClasses;
+package io.github.alprkeskin.currency.service.ext.call.open.exchange;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import java.net.URI;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class ExchangeRatesAbstractClass {
+public abstract class OpenExchangeRates {
 
     @Autowired
     protected RestTemplate restTemplate;

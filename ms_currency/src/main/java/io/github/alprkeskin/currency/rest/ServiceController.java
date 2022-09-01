@@ -1,7 +1,7 @@
 package io.github.alprkeskin.currency.rest;
 
 import io.github.alprkeskin.currency.model.CurrencyRates;
-import io.github.alprkeskin.currency.service.OpenExchangeRatesMediatorService;
+import io.github.alprkeskin.currency.service.CurrencyRatesMediatorService;
 import io.github.alprkeskin.currency.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,19 +15,17 @@ import java.util.Map;
 public class ServiceController {
 
     @Autowired
-    private OpenExchangeRatesMediatorService openExchangeRatesMediatorService;
+    private CurrencyRatesMediatorService currencyRatesMediatorService;
 
     @GetMapping(value = {"", "/{requestedDate}"})
     public ResponseEntity<CurrencyRates> getCurrencyRates(
-            @PathVariable(value = "requestedDate", required = false) String requestedDate,
-            @RequestParam(value = "symbols", required = false, defaultValue = "XXX") String symbols) {
-
+            @PathVariable(value = "requestedDate", required = false) String requestedDate) {
         LocalDate desiredDate = requestedDate == null ? LocalDate.now() : DateUtil.getLocalDate(requestedDate);
-        return ResponseEntity.ok(openExchangeRatesMediatorService.getCurrencyRates(desiredDate, symbols));
+        return ResponseEntity.ok(currencyRatesMediatorService.getCurrencyRates(desiredDate));
     }
 
     @GetMapping(value = "/currencies")
     public ResponseEntity<Map> getCurrencies() {
-        return ResponseEntity.ok(openExchangeRatesMediatorService.getCurrencies());
+        return ResponseEntity.ok(currencyRatesMediatorService.getCurrencies());
     }
 }

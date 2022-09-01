@@ -19,9 +19,15 @@ repositories {
 }
 
 dependencies {
+    implementation project(':common-model')
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'junit:junit:4.13.1'
+    implementation 'org.springframework.amqp:spring-rabbit:2.4.6'
+
+    implementation 'io.github.berkayelken:bananazura-common:1.0.1'
+    implementation 'io.github.berkayelken:bananazura-aop:1.0.1'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"

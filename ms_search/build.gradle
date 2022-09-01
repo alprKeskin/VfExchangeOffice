@@ -13,8 +13,11 @@ repositories {
 }
 
 dependencies {
+    implementation project(':common-model')
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.amqp:spring-rabbit:2.4.6'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

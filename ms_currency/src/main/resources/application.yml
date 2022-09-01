@@ -4,6 +4,11 @@ server:
     context-path: "/open_exchange_rates_api"
 
 alprkeskin:
+  arbitrage:
+    rate: 0.51
+  queues:
+    from:
+      search: "search-to-currency"
   consumed-urls:
     api: "https://openexchangerates.org/api/"
 
@@ -13,7 +18,21 @@ query-parameter:
 spring:
   data:
     mongodb:
-      authentication-database: admin
-      database: openExchangeServiceDatabase
+      #authentication-database: admin
+      #database: openExchangeServiceDatabase
       port: 27017
       host: localhost
+  rabbitmq:
+    host: localhost
+    port: 5672
+
+bananazura:
+  spring:
+    basePackage: "io.github.alprkeskin"
+    aop:
+      log:
+        exception:
+          aspect: true
+        info:
+          aspect: true
+          printarguments: true

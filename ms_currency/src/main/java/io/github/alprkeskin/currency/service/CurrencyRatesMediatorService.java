@@ -1,7 +1,7 @@
 package io.github.alprkeskin.currency.service;
 
 import io.github.alprkeskin.currency.model.CurrencyRates;
-import io.github.alprkeskin.currency.service.exchangeRates.ExchangeRatesMediatorService;
+import io.github.alprkeskin.currency.service.ext.call.open.exchange.OpenExchangeRatesMediatorService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +15,17 @@ import java.util.Optional;
 @Service
 @NoArgsConstructor
 @AllArgsConstructor
-public class OpenExchangeRatesMediatorService {
+public class CurrencyRatesMediatorService {
 
     @Autowired
-    private ExchangeRatesMediatorService exchangeRatesMediatorService;
+    private OpenExchangeRatesMediatorService exchangeRatesMediatorService;
     @Autowired
     private CurrencyPersistanceService currencyPersistanceService;
 
-    public CurrencyRates getCurrencyRates(LocalDate date, String symbols) {
+    public CurrencyRates getCurrencyRates(LocalDate date) {
         Optional<CurrencyRates> currencyRates = currencyPersistanceService.findCurrencyRatesById(date);
         if (currencyRates.isEmpty()) {
-            CurrencyRates currencyRatesOfRelatedDate = exchangeRatesMediatorService.getCurrencyRates(date, symbols);
+            CurrencyRates currencyRatesOfRelatedDate = exchangeRatesMediatorService.getCurrencyRates(date);
             currencyPersistanceService.saveCurrencyRates(currencyRatesOfRelatedDate, date);
             return currencyRatesOfRelatedDate;
         }

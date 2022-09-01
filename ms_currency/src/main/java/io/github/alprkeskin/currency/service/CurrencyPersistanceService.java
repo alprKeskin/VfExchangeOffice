@@ -22,9 +22,7 @@ class CurrencyPersistanceService {
     }
 
     public void saveCurrencyRates(CurrencyRates currencyRatesObject, LocalDate localDate) {
-        // set its id
         currencyRatesObject.setId(localDate.toString());
-        // save it to the database
         currencyRatesRepository.save(currencyRatesObject);
     }
 }

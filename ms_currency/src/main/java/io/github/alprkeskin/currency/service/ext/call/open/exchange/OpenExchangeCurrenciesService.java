@@ -1,6 +1,5 @@
-package io.github.alprkeskin.currency.service.exchangeRates;
+package io.github.alprkeskin.currency.service.ext.call.open.exchange;
 
-import io.github.alprkeskin.currency.service.exchangeRates.abstractClasses.ExchangeRatesAbstractClass;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +10,13 @@ import static io.github.alprkeskin.currency.service.endpoints.Endpoint.CURRENCIE
 
 @Service
 @AllArgsConstructor
-class CurrenciesService extends ExchangeRatesAbstractClass {
+class OpenExchangeCurrenciesService extends OpenExchangeRates {
 
-    public Map getCurrencies() {
+    Map getCurrencies() {
         return getDataFromRemoteService(getUri(), Map.class);
     }
 
-    public URI getUri() {
+    URI getUri() {
         return URI.create(URL + CURRENCIES.getOperationType());
     }
 
