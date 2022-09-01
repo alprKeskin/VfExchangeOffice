@@ -7,28 +7,26 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfig {
-    @Value("#{'${alprkeskin.queues.to.currency}'.concat('-queue')}")
-    private String searchQueue;
-    @Value("#{'${alprkeskin.queues.to.currency}'.concat('-exchange')}")
-    private String searchExchangeKey;
-    @Value("#{'${alprkeskin.queues.to.currency}'.concat('-routing')}")
-    private String searchRoutingKey;
-
+    private static final String QUEUE_POSTFIX = "-queue";
+    private static final String EXCHANGE_POSTFIX = "-exchange";
+    private static final String ROUTING_POSTFIX = "-routing";
+    @Value("#{'${alprkeskin.queues.to.currency}'}")
+    private String searchPrefix;
     @Bean
     public Declarables createRabbitQueuesConnection() {
-        return new Declarables(createQueue(searchQueue), createExchange(searchExchangeKey),
-                createBindingRoute(searchRoutingKey, searchExchangeKey, searchQueue));
+        return new Declarables(createQueue(searchPrefix), createExchange(searchPrefix),
+                createBindingRoute(searchPrefix));
     }
 
-    private Queue createQueue(String queue) {
-        return new Queue(queue, true);
+    private Queue createQueue(String prefix) {
+        return new Queue(prefix + QUEUE_POSTFIX, true);
     }
 
-    private DirectExchange createExchange(String exchange) {
-        return new DirectExchange(exchange, true, false);
+    private DirectExchange createExchange(String prefix) {
+        return new DirectExchange(prefix + EXCHANGE_POSTFIX, true, false);
     }
 
-    private Declarable createBindingRoute(String route, String exchange, String queue) {
-        return BindingBuilder.bind(createQueue(queue)).to(createExchange(exchange)).with(route);
+    private Declarable createBindingRoute(String prefix) {
+        return BindingBuilder.bind(createQueue(prefix)).to(createExchange(prefix)).with(prefix + ROUTING_POSTFIX);
     }
 }

@@ -1,7 +1,7 @@
 server:
   port: 8082
   servlet:
-    context-path: "/open_exchange_rates_api"
+    context-path: "/api"
 
 alprkeskin:
   arbitrage:

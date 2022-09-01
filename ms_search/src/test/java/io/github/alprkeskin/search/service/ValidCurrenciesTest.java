@@ -1,5 +1,6 @@
 package io.github.alprkeskin.search.service;
 
+import io.github.alprkeskin.search.utils.ValidCurrencies;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

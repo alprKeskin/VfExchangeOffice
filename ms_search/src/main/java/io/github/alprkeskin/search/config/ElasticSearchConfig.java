@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "io.github.alprkeskin.search.repository")
 @ComponentScan(basePackages = {"io.github.alprkeskin.search"})
-public class Config extends AbstractElasticsearchConfiguration {
+public class ElasticSearchConfig extends AbstractElasticsearchConfiguration {
     @Value("${elasticsearch.url}")
     public String elasticsearchUrl;
 

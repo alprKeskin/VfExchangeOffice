@@ -1,7 +1,6 @@
-package io.github.alprkeskin.search.service;
+package io.github.alprkeskin.search.service.extcall;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import io.github.alprkeskin.search.utils.ValidCurrencies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
-public class OpenExchangeRatesCurrencyServiceCaller {
+public class CurrencyServiceClient {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(OpenExchangeRatesCurrencyServiceCaller.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(CurrencyServiceClient.class);
 
     @Autowired
     private RestTemplate restTemplate;
@@ -33,7 +30,7 @@ public class OpenExchangeRatesCurrencyServiceCaller {
     }
 
     private ArrayList<String> getCurrencySymbols(URI targetUri) {
-        return new ArrayList<String>(getCurrencyNames(targetUri).keySet());
+        return new ArrayList<>(getCurrencyNames(targetUri).keySet());
     }
 
     @EventListener(ApplicationReadyEvent.class)

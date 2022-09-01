@@ -1,4 +1,4 @@
-package io.github.alprkeskin.search.service;
+package io.github.alprkeskin.search.utils;
 
 import java.util.List;
 
