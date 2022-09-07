@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.alprkeskin.swagger'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+
+    compileOnly 'org.springframework:spring-context:5.3.21'
+    compileOnly 'org.springframework:spring-webmvc:5.3.21'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}

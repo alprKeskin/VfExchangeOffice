@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.alprkeskin.common.aspects'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':common')
+
+    compileOnly 'org.springframework:spring-web:5.3.21'
+    compileOnly 'org.springframework:spring-webmvc:5.3.21'
+    compileOnly 'org.springframework:spring-aop:5.3.21'
+    compileOnly 'org.springframework.boot:spring-boot-autoconfigure:2.7.1'
+
+    compileOnly 'org.aspectj:aspectjrt:1.9.8'
+    compileOnly 'org.aspectj:aspectjweaver:1.9.8'
+
+    compileOnly 'org.slf4j:slf4j-api:1.7.21'
+
+    compileOnly 'javax.servlet:servlet-api:2.5'
+
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
