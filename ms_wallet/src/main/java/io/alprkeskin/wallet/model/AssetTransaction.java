@@ -1,5 +1,6 @@
 package io.alprkeskin.wallet.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Getter
 @Setter
+@Builder
 public class AssetTransaction {
     // email of the user that carries out transaction (e.g. deposit / withdraw 100 TRY)
     private String email;
