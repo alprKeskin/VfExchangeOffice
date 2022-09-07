@@ -1,3 +1,9 @@
+authenticate-endpoints:
+  endpoints:
+    - validUserType: ADMIN
+      method: DELETE
+      endpoint: "/api/auth/unregister"
+
 server:
   port: 8080
 
@@ -7,6 +13,10 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: authenticationModule
+          uri: http://localhost:8088/
+          predicates:
+            - Path=/api/auth/**
         - id: currencyEndpoints
           uri: http://localhost:8082
           predicates:
@@ -15,3 +25,8 @@ spring:
           uri: http://localhost:8081
           predicates:
             - Path=/api/search/**
+
+feign-client:
+  authentication:
+    name: "authentication-service"
+    url: "http://auth-service:8088/api/auth/check"
