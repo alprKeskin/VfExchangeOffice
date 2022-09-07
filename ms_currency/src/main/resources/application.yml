@@ -9,6 +9,7 @@ alprkeskin:
   queues:
     from:
       search: "search-to-currency"
+      wallet: "wallet-to-currency"
   consumed-urls:
     api: "https://openexchangerates.org/api/"
 

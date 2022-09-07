@@ -1,0 +1,18 @@
+server:
+  port: 8084
+  servlet:
+    context-path: "/api"
+
+spring.data.cassandra:
+  contact-points: cassandra
+  local-datacenter: "datacenter1"
+  keyspace-name: "wallet_cassandra"
+  schema-action: CREATE_IF_NOT_EXISTS
+  timeout: 10s
+  connect-timeout: 10s
+  init-query-timeout: 10s
+
+alprkeskin:
+  queues:
+    to:
+      currency: "wallet-to-currency"

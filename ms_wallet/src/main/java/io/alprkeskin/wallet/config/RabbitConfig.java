@@ -1,7 +1,6 @@
-package io.github.alprkeskin.currency.config;
+package io.alprkeskin.wallet.config;
 
 import org.springframework.amqp.core.*;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +10,14 @@ public class RabbitConfig {
     private static final String QUEUE_POSTFIX = "-queue";
     private static final String EXCHANGE_POSTFIX = "-exchange";
     private static final String ROUTING_POSTFIX = "-routing";
-    @Value("#{'${alprkeskin.queues.from.search}'}")
+
+    @Value("#{'${alprkeskin.queues.to.currency}'}")
     private String searchPrefix;
 
-
-    // TODO: set qualifier
     @Bean
     public Declarables createRabbitQueuesConnection() {
-        return new Declarables(createQueue(searchPrefix), createExchange(searchPrefix),
+        return new Declarables(createQueue(searchPrefix),
+                createExchange(searchPrefix),
                 createBindingRoute(searchPrefix));
     }
 

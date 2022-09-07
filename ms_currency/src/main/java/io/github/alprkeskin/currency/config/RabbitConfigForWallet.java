@@ -4,16 +4,13 @@ import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class RabbitConfig {
+public class RabbitConfigForWallet {
     private static final String QUEUE_POSTFIX = "-queue";
     private static final String EXCHANGE_POSTFIX = "-exchange";
     private static final String ROUTING_POSTFIX = "-routing";
-    @Value("#{'${alprkeskin.queues.from.search}'}")
+    @Value("#{'${alprkeskin.queues.from.wallet}'}")
     private String searchPrefix;
-
 
     // TODO: set qualifier
     @Bean
