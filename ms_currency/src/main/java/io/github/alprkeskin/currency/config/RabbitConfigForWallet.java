@@ -1,7 +1,6 @@
 package io.github.alprkeskin.currency.config;
 
 import org.springframework.amqp.core.*;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 

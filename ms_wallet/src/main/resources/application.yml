@@ -1,16 +1,15 @@
 server:
-  port: 8084
+  port: 8083
   servlet:
     context-path: "/api"
 
-spring.data.cassandra:
-  contact-points: cassandra
-  local-datacenter: "datacenter1"
-  keyspace-name: "wallet_cassandra"
-  schema-action: CREATE_IF_NOT_EXISTS
-  timeout: 10s
-  connect-timeout: 10s
-  init-query-timeout: 10s
+spring:
+  data:
+    mongodb:
+      #authentication-database: admin
+      database: wallet_db
+      port: 27017
+      host: localhost
 
 alprkeskin:
   queues:

@@ -1,5 +1,6 @@
 package io.github.alprkeskin.auth.rest;
 
+import io.github.alprkeskin.auth.repository.UserRepository;
 import io.github.alprkeskin.auth.service.login.LoginService;
 import io.github.alprkeskin.auth.model.request.LoginRequest;
 import io.github.alprkeskin.auth.model.response.AuthResponse;

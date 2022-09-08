@@ -11,27 +11,27 @@ import java.io.Serializable;
 @Builder
 public class Asset implements Serializable {
     // value currency'nin miktarı
-    private int value;
-    private int valueAgainstUsd;
+    private int amount;
+    private double value;
 
-    public void incrementValue(int value) {
-        this.value += value;
+    public void incrementAmount(int value) {
+        this.amount += value;
     }
 
-    public void decrementValue(int value) {
-        this.value -= value;
+    public void decrementAmount(int value) {
+        this.amount -= value;
+        if(this.amount < 0)
+            this.amount = 0;
+    }
+
+    public void incrementValue(double valueAgainstUsd) {
+        this.value += valueAgainstUsd;
+    }
+
+    public void decrementValue(double valueAgainstUsd) {
+        this.value -= valueAgainstUsd;
         if(this.value < 0)
             this.value = 0;
-    }
-
-    public void incrementUsdValue(double valueAgainstUsd) {
-        this.valueAgainstUsd += valueAgainstUsd;
-    }
-
-    public void decrementUsdValue(double valueAgainstUsd) {
-        this.valueAgainstUsd -= valueAgainstUsd;
-        if(this.valueAgainstUsd < 0)
-            this.valueAgainstUsd = 0;
     }
 
 }

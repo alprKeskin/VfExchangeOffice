@@ -12,4 +12,5 @@ public class AuthResponse {
     private ResultEntity result;
     private String email;
     private String token;
+    private String name;
 }

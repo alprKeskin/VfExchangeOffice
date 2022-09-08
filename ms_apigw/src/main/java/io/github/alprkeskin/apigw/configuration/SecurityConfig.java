@@ -18,7 +18,7 @@ class SecurityConfig {
     public SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http,
                                                        AuthenticationFilter tokenFilter)
     {
-        return http.httpBasic().disable().cors().and().csrf().disable()
+        return http.httpBasic().disable().csrf().disable()
                 .addFilterAt(tokenFilter, AUTHENTICATION)
                 .build();
     }

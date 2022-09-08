@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.github.alprkeskin.currency.service.endpoints.Endpoint.HISTORICAL;
 import static io.github.alprkeskin.currency.service.endpoints.Endpoint.LATEST;
@@ -15,7 +17,11 @@ import static io.github.alprkeskin.currency.service.endpoints.Endpoint.LATEST;
 class OpenExchangeRatesService extends OpenExchangeRates {
 
     CurrencyRates getCurrencyRates(LocalDate date) {
-        return getDataFromRemoteService(getUri(date), CurrencyRates.class);
+        CurrencyRates currencyRates = getDataFromRemoteService(getUri(date), CurrencyRates.class);
+        Map<String, Double> rates = new HashMap<>();
+        currencyRates.getRates().entrySet().stream().forEach(entry -> rates.put(entry.getKey(), 1 / entry.getValue()));
+        currencyRates.setRates(rates);
+        return currencyRates;
     }
 
     URI getUri(LocalDate date) {

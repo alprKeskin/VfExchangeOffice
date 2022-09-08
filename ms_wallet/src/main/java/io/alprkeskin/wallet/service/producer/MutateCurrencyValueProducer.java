@@ -1,5 +1,6 @@
 package io.alprkeskin.wallet.service.producer;
 
+import io.alprkeskin.wallet.service.CurrencyClientService;
 import io.github.alprkeskin.common.model.MutatedCurrency;
 import io.alprkeskin.wallet.model.AssetTransaction;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -14,6 +15,9 @@ public class MutateCurrencyValueProducer {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private CurrencyClientService currencyClientService;
+
     // TODO: exchangeKey ve routingKey değerlerini doğru şekilde ayarla.
     @Value("#{'${alprkeskin.queues.to.currency}'.concat('-exchange')}")
     private String exchangeKey;
@@ -27,7 +31,7 @@ public class MutateCurrencyValueProducer {
 
         MutatedCurrency mutatedCurrency = MutatedCurrency.builder()
                 .currencyCode(assetTransaction.getAssetCode())
-                .transactionAmountInUsdParity(assetTransaction.getValueInUsdParity())
+                .transactionAmountInUsdParity(currencyClientService.getCurrencyValue(assetTransaction.getAssetCode()))
                 .isPump(isPump)
                 .build();
 

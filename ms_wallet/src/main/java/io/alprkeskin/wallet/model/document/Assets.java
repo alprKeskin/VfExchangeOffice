@@ -1,12 +1,15 @@
 package io.alprkeskin.wallet.model.document;
 
 import io.alprkeskin.wallet.model.Asset;
+import io.alprkeskin.wallet.model.AssetTransaction;
 import lombok.*;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.NotNull;
+import java.util.HashMap;
 import java.util.Map;
 
 @Validated
@@ -15,10 +18,14 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table("ASSETS")
+@Document("ASSETS")
 public class Assets {
-    @NotNull
-    @PrimaryKey
+    @Id
+    @MongoId(targetType = FieldType.STRING)
     private String email;
     private Map<String, Asset> assets;
+
+    public static Assets getDefault(String email) {
+        return Assets.builder().email(email).assets(new HashMap<>()).build();
+    }
 }
