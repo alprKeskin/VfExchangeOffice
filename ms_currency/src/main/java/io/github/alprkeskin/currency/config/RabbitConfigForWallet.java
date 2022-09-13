@@ -11,7 +11,6 @@ public class RabbitConfigForWallet {
     @Value("#{'${alprkeskin.queues.from.wallet}'}")
     private String searchPrefix;
 
-    // TODO: set qualifier
     @Bean
     public Declarables createRabbitQueuesConnection() {
         return new Declarables(createQueue(searchPrefix), createExchange(searchPrefix),

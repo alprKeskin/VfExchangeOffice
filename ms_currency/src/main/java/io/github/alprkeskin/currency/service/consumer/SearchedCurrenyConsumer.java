@@ -23,17 +23,10 @@ class SearchedCurrenyConsumer {
     @RabbitListener(queues = {"#{'${alprkeskin.queues.from.search}'.concat('-queue')}"})
     public void doArbitrage(SearchedCurrency searchedCurrency) {
         log.info("MutatedCurrencyValueConsumer::doArbitrage(SearchedCurrency searchedCurrency = {})", searchedCurrency);
-        // Parametre olarak verilen searchedCurrency'deki date'i (id) kullanarak ilgili tarihe ait olan currency rates'i çekiyor.
         Optional<CurrencyRates> currencyRatesOptional = repository.findById(searchedCurrency.getDate());
-        // Eğer ilgili tarihe ait bir currency rates database'de yoksa işlem durduruluyor.
-        // Bizim implementation'umuz doğruysa bunun olması mümkün değil
-        if(currencyRatesOptional.isEmpty())
-            return;
-        // İlgili tarihe ait bir currency rate varsa bu currency rate'i optional'den kurtarıyoruz.
+        if(currencyRatesOptional.isEmpty()) return;
         CurrencyRates rates = currencyRatesOptional.get();
-        // Arbitrage'ı uygula.
         rates.getRates().computeIfPresent(searchedCurrency.getCurrencyCode(), this::calculateRate);
-        // Database'de güncellemeyi yap.
         repository.save(rates);
     }
 
